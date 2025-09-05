@@ -99,6 +99,74 @@ const updateProduct = async (req, res) => {
   }
 };
 
+const updateStock = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { action, quantity } = req.body;
+
+    // Validation
+    if (!["increase", "decrease"].includes(action)) {
+      return res.status(400).json({
+        error: true,
+        message: "Action must be 'increase' or 'decrease'",
+      });
+    }
+
+    if (!quantity || quantity <= 0) {
+      return res.status(400).json({
+        error: true,
+        message: "Quantity must be a positive number",
+      });
+    }
+
+    const product = await Product.findOne({
+      _id: id,
+      businessId: req.businessId,
+    });
+
+    if (!product) {
+      return res.status(404).json({
+        error: true,
+        message: "Product not found",
+      });
+    }
+
+    // Update stock based on action
+    if (action === "increase") {
+      product.stock += parseInt(quantity);
+    } else if (action === "decrease") {
+      if (product.stock < quantity) {
+        return res.status(400).json({
+          error: true,
+          message: "Insufficient stock available",
+        });
+      }
+      product.stock -= parseInt(quantity);
+    }
+
+    await product.save();
+
+    res.json({
+      success: true,
+      message: `Stock ${action}d successfully`,
+      product: {
+        id: product._id,
+        name: product.name,
+        previousStock:
+          product.stock + (action === "increase" ? -quantity : quantity),
+        currentStock: product.stock,
+        change: action === "increase" ? `+${quantity}` : `-${quantity}`,
+      },
+    });
+  } catch (error) {
+    console.error("Update stock error:", error);
+    res.status(500).json({
+      error: true,
+      message: "Failed to update stock",
+    });
+  }
+};
+
 const deleteProduct = async (req, res) => {
   try {
     const { id } = req.params;
@@ -131,6 +199,7 @@ const deleteProduct = async (req, res) => {
 module.exports = {
   getProducts,
   createProduct,
+  updateStock,
   updateProduct,
   deleteProduct,
 };

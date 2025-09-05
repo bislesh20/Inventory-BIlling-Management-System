@@ -70,6 +70,33 @@ const createContact = async (req, res) => {
       });
     }
 
+    // Check for duplicates - simplified approach
+    const existingContact = await Contact.findOne({
+      businessId: req.businessId,
+      type: type,
+      $or: [
+        { name: { $regex: new RegExp(`^${name}$`, "i") } },
+        ...(email
+          ? [{ email: { $regex: new RegExp(`^${email}$`, "i") } }]
+          : []),
+        ...(phone ? [{ phone: phone }] : []),
+      ],
+    });
+
+    if (existingContact) {
+      return res.status(409).json({
+        error: true,
+        message: `A ${type} with similar details already exists`,
+        existingContact: {
+          id: existingContact._id,
+          name: existingContact.name,
+          email: existingContact.email,
+          phone: existingContact.phone,
+          type: existingContact.type,
+        },
+      });
+    }
+
     // Create new contact
     const newContact = new Contact({
       name,
