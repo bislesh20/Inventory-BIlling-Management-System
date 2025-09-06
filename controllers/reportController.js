@@ -4,7 +4,7 @@ const { getLowStockItems } = require("../utils/stockManagement");
 
 const getInventoryReport = async (req, res) => {
   try {
-    const businessId = req.session.user.businessId;
+    const businessId = req.businessId;
 
     const products = await Product.find({ businessId })
       .select("name category stock price")
@@ -31,7 +31,7 @@ const getInventoryReport = async (req, res) => {
 
 const getTransactionsReport = async (req, res) => {
   try {
-    const businessId = req.session.user.businessId;
+    const businessId = req.businessId;
     const { startDate, endDate, type } = req.query;
 
     let query = { businessId };

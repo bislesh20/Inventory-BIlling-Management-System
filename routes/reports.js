@@ -4,8 +4,7 @@ const {
   getInventoryReport,
   getTransactionsReport,
 } = require("../controllers/reportController");
-const { isAuthenticated } = require("../middleware/auth");
 
-router.get("/inventory", isAuthenticated, getInventoryReport);
-router.get("/transactions", isAuthenticated, getTransactionsReport);
+router.get("/inventory", getInventoryReport);
+router.get("/transactions", getTransactionsReport);
 module.exports = router;

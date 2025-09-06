@@ -4,10 +4,8 @@ const {
   getTransactions,
   createTransaction,
 } = require("../controllers/transactionController");
-const { isAuthenticated } = require("../middleware/auth");
 
-router.get("/transactions", isAuthenticated, getTransactions);
-
-router.post("/transactions", isAuthenticated, createTransaction);
+router.get("/", getTransactions);
+router.post("/", createTransaction);
 
 module.exports = router;
