@@ -40,6 +40,7 @@ inventory-billing-management-system/
 │── middleware/ # Auth middleware & error Handler middleware
 │── config/ # Config files
 │── utils/ # Helper functions
+│── API Document/
 │── Postman Collection/ # Postman requests for testing the API endpoints
 
 📑 API Endpoints
