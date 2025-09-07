@@ -32,6 +32,14 @@ app.use(
 );
 
 // Routes
+app.get("/", (req, res) => {
+  res.json({
+    message: "Inventory Billing Management System API",
+    status: "Running",
+    timestamp: new Date().toISOString(),
+    version: "1.0.0",
+  });
+});
 app.use("/auth", authRoutes);
 app.use("/products", isAuthenticated, productRoutes);
 app.use("/contacts", isAuthenticated, contactRoutes);
