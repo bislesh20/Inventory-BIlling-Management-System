@@ -1,9 +1,10 @@
-// ------------------ Imports ------------------
+// Imports
 const express = require("express");
 const dotenv = require("dotenv");
 const cookieParser = require("cookie-parser");
+const cors = require("cors");
 
-// Load environment variables early
+//environment variables
 dotenv.config();
 
 const { errorHandler, notFoundHandler } = require("./middleware/errorHandler");
@@ -17,15 +18,20 @@ const reportRoutes = require("./routes/reports");
 
 const connectDB = require("./config/db");
 
-// ------------------ App Setup ------------------
+// App Setup
 const app = express();
 
 // Core Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
+app.use(
+  cors({
+    origin: "*",
+  })
+);
 
-// ------------------ Routes ------------------
+// Routes
 app.use("/auth", authRoutes);
 app.use("/products", isAuthenticated, productRoutes);
 app.use("/contacts", isAuthenticated, contactRoutes);
@@ -36,11 +42,15 @@ app.use("/reports", isAuthenticated, reportRoutes);
 app.use(errorHandler);
 app.use(notFoundHandler);
 
-// ------------------ Server Startup ------------------
-const PORT = process.env.PORT || 4000;
+// Server Startup
+const PORT = process.env.PORT || 3000;
+
+app.get("/health", (req, res) => {
+  res.status(200).send("ok");
+});
 
 connectDB().then(() => {
-  app.listen(PORT, () => {
+  app.listen(process.env.PORT || 3000, () => {
     console.log(`Server running on port ${PORT}`);
   });
 });
