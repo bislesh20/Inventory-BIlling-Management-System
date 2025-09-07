@@ -31,13 +31,16 @@ Development Tools: nodemon
 
 📂 Project Structure
 src/
-├── app.js # Main application file
-├── routes/ # API route files
-├── models/ # MongoDB schemas
-├── controllers/ # Route handlers
-├── middleware/ # Auth middleware
-├── config/ # Config files
-└── utils/ # Helper functions
+inventory-billing-management-system/
+│── src/
+│── app.js # Main application file
+│── models/ # MongoDB schemas
+│── routes/ # API route files
+│── controllers/ # Route handlers
+│── middleware/ # Auth middleware & error Handler middleware
+│── config/ # Config files
+│── utils/ # Helper functions
+│── Postman Collection/ # Postman requests for testing the API endpoints
 
 📑 API Endpoints
 🔑 Authentication

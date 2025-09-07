@@ -1,0 +1,760 @@
+{
+	"info": {
+		"_postman_id": "cfed204b-eedd-4942-889f-a7e1206585a4",
+		"name": "Business Management API",
+		"description": "Complete API testing for Business Management System",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "46389377",
+		"_collection_link": "https://bisleshsing.postman.co/workspace/Project-Testing~a95ca99b-1e4d-4f12-adcd-a3646851e296/collection/46389377-cfed204b-eedd-4942-889f-a7e1206585a4?action=share&source=collection_link&creator=46389377"
+	},
+	"item": [
+		{
+			"name": "01-Authentication",
+			"item": [
+				{
+					"name": "Register User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"username\": \"testbusiness\",\r\n  \"email\": \"test@business.com\",\r\n  \"password\": \"password123\",\r\n  \"businessName\": \"Test Business Ltd\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/register",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"username\": \"testbusiness\",\r\n  \"password\": \"password123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/login",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout User",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"username\": \"testuser\",\r\n  \"password\": \"password123\"\r\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/logout",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "02-Products",
+			"item": [
+				{
+					"name": "getAllProducts",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"John Smith Updated\",\r\n  \"phone\": \"+91-9876543211\",\r\n  \"email\": \"john.updated@gmail.com\",\r\n  \"address\": \"789 New Address, Kolkata\",\r\n  \"type\": \"customer\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/products",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createProduct",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Nike Running Shoes\",\r\n  \"description\": \"Comfortable running shoes for daily exercise\",\r\n  \"price\": 5500,\r\n  \"stock\": 50,\r\n  \"category\": \"Sports\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/products",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getProductByName",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Nike Running Shoes\",\r\n  \"description\": \"Comfortable running shoes for daily exercise\",\r\n  \"price\": 5500,\r\n  \"stock\": 50,\r\n  \"category\": \"Sports\"\r\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/products?search=samsung",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"products"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "samsung"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getProductByCategory",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Nike Running Shoes\",\r\n  \"description\": \"Comfortable running shoes for daily exercise\",\r\n  \"price\": 5500,\r\n  \"stock\": 50,\r\n  \"category\": \"Sports\"\r\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/products?category=Electronics",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"products"
+							],
+							"query": [
+								{
+									"key": "category",
+									"value": "Electronics"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateProduct",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Samsung Galaxy S23 Ultra\",\r\n  \"description\": \"Latest Samsung flagship with S-Pen\",\r\n  \"price\": 65000,\r\n  \"stock\": 20,\r\n  \"category\": \"Electronics\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/products/68bd521e5fa543258c12e735",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"products",
+								"68bd521e5fa543258c12e735"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateStock",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"action\": \"increase\",\r\n  \"quantity\": 10\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/products/68bd521e5fa543258c12e735/stock",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"products",
+								"68bd521e5fa543258c12e735",
+								"stock"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteProduct",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"action\": \"increase\",\r\n  \"quantity\": 10\r\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/products/68bd52345fa543258c12e739",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"products",
+								"68bd52345fa543258c12e739"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "03-Contacts",
+			"item": [
+				{
+					"name": "getContacts",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/contacts",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"contacts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createContacts",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Office Supplies Co\",\r\n  \"phone\": \"+91-7654321098\",\r\n  \"email\": \"orders@officesupplies.com\",\r\n  \"address\": \"654 Business District, Kolkata\",\r\n  \"type\": \"vendor\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/contacts",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"contacts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateContact",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/contacts/68bb56e685f19cae06955e85",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"contacts",
+								"68bb56e685f19cae06955e85"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteContact",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/contacts/68bb56e685f19cae06955e85/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"contacts",
+								"68bb56e685f19cae06955e85",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getCustomers",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Office Supplies Co\",\r\n  \"phone\": \"+91-7654321098\",\r\n  \"email\": \"orders@officesupplies.com\",\r\n  \"address\": \"654 Business District, Kolkata\",\r\n  \"type\": \"vendor\"\r\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/contacts?type=customer",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"contacts"
+							],
+							"query": [
+								{
+									"key": "type",
+									"value": "customer"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getVendors",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Office Supplies Co\",\r\n  \"phone\": \"+91-7654321098\",\r\n  \"email\": \"orders@officesupplies.com\",\r\n  \"address\": \"654 Business District, Kolkata\",\r\n  \"type\": \"vendor\"\r\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/contacts?type=vendor",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"contacts"
+							],
+							"query": [
+								{
+									"key": "type",
+									"value": "vendor"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getSingleContact",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"Office Supplies Co\",\r\n  \"phone\": \"+91-7654321098\",\r\n  \"email\": \"orders@officesupplies.com\",\r\n  \"address\": \"654 Business District, Kolkata\",\r\n  \"type\": \"vendor\"\r\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/contacts?search=john",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"contacts"
+							],
+							"query": [
+								{
+									"key": "search",
+									"value": "john"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "updateContact",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"John Smith Updated\",\r\n  \"phone\": \"+91-9876543211\",\r\n  \"email\": \"john.updated@gmail.com\",\r\n  \"address\": \"789 New Address, Kolkata\",\r\n  \"type\": \"customer\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/contacts/68bd588a5fa543258c12e745",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"contacts",
+								"68bd588a5fa543258c12e745"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "deleteContact",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\": \"John Smith Updated\",\r\n  \"phone\": \"+91-9876543211\",\r\n  \"email\": \"john.updated@gmail.com\",\r\n  \"address\": \"789 New Address, Kolkata\",\r\n  \"type\": \"customer\"\r\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/contacts/68bd58955fa543258c12e748",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"contacts",
+								"68bd58955fa543258c12e748"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "04-Transactions",
+			"item": [
+				{
+					"name": "getAllTransactions",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/transactions",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"transactions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createSaleTransactions",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"type\": \"sale\",\r\n  \"customerId\": \"68bd589f5fa543258c12e74b\",\r\n  \"products\": [\r\n    {\r\n      \"productId\": \"68bd521e5fa543258c12e735\",\r\n      \"quantity\": 2,\r\n      \"price\": 65000\r\n    },\r\n    {\r\n      \"productId\": \"68bd522a5fa543258c12e737\",\r\n      \"quantity\": 1,\r\n      \"price\": 75000\r\n    }\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/transactions",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"transactions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "createPurchaseTransactions",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"type\": \"purchase\",\r\n  \"vendorId\": \"68bd589f5fa543258c12e74b\",\r\n  \"products\": [\r\n    {\r\n      \"productId\": \"68bd521e5fa543258c12e735\",\r\n      \"quantity\": 10,\r\n      \"price\": 45000\r\n    }\r\n  ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/transactions",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"transactions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getTransactionsByType",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "getTransactionsByDate",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"type\": \"purchase\",\r\n  \"vendorId\": \"68bd589f5fa543258c12e74b\",\r\n  \"products\": [\r\n    {\r\n      \"productId\": \"68bd521e5fa543258c12e735\",\r\n      \"quantity\": 10,\r\n      \"price\": 45000\r\n    }\r\n  ]\r\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/transactions?startDate=2025-09-01&endDate=2025-09-30",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"transactions"
+							],
+							"query": [
+								{
+									"key": "startDate",
+									"value": "2025-09-01"
+								},
+								{
+									"key": "endDate",
+									"value": "2025-09-30"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "05-Reports",
+			"item": [
+				{
+					"name": "inventoryReports",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"testbusiness\",\r\n    \"password\" : \"password123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/reports/inventory",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"reports",
+								"inventory"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "transactionReports",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/reports/transactions",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"reports",
+								"transactions"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:3000"
+		},
+		{
+			"key": "token",
+			"value": ""
+		},
+		{
+			"key": "productId",
+			"value": ""
+		},
+		{
+			"key": "customerId",
+			"value": ""
+		},
+		{
+			"key": "vendorId",
+			"value": ""
+		}
+	]
+}
