@@ -1,151 +1,101 @@
-# Inventory & Billing Management System
+📦 Inventory & Billing Management System
 
-A simple backend system for small businesses to manage products, customers, vendors, and basic transactions.
+A simple backend system for small businesses to manage products, customers, vendors, and transactions.
+Each business user manages their own data securely with JWT authentication.
 
-## Overview
+🚀 Features
 
-Build a simple backend system for small businesses to manage products, customers, vendors, and basic transactions. Each business user manages their own data with JWT authentication.
+User Authentication – Register, login, logout with JWT
 
-## Core Features
+Product Management – Add, edit, delete, and list products with stock tracking
 
-### 1. User Authentication
+Customer & Vendor Management – Manage contacts with search functionality
 
-- Username or email/password login (JWT)
-- Basic session management
-- Each business user manages their own data
+Transaction Management – Record sales & purchases, auto-update stock, calculate totals
 
-### 2. Product Management
+Reports – View inventory, transaction history, and summaries
 
-- Add, edit, delete, and list products
-- Simple stock tracking (increase/decrease)
-- Basic search by name or category
+🛠️ Tech Stack
 
-### 3. Customer & Vendor Management
+Backend: Node.js, Express.js
 
-- Add, edit, delete customers and vendors
-- Simple list and search functionality
+Database: MongoDB + Mongoose
 
-### 4. Transaction Management
+Authentication: JWT + bcrypt
 
-- Record sales (to customers) and purchases (from vendors)
-- Automatically update product stock
-- Calculate totals
+Others: dotenv, express-validator
 
-### 5. Simple Reports
-
-- List all transactions with filters (date, type)
-- Current inventory with stock levels
-- Customer/vendor transaction history
-
-## Technical Requirements
-
-### Project Structure
-
+📂 Project Structure
 src/
 ├── app.js # Main application file
 ├── routes/ # API route files
 ├── models/ # MongoDB schemas
 ├── controllers/ # Route handlers
-├── middleware/ # Basic auth middleware
-├── config/ # Configuration files
+├── middleware/ # Auth middleware
+├── config/ # Config files
 └── utils/ # Helper functions
 
-### Database (MongoDB)
+📑 API Endpoints
+🔑 Authentication
 
-- Use Mongoose for database operations
-- Schema design with relationships
-- No complex aggregations required
+POST /api/auth/register → Register a new user
 
-### Authentication
+POST /api/auth/login → Login user
 
-- Session-based auth (JWT required)
-- Basic password hashing using bcrypt
-- Simple middleware to protect routes
+GET /api/auth/logout → Logout
 
-### Error Handling
+📦 Products
 
-- Basic try-catch blocks
-- Error responses
-- Console logging for debugging
+GET /api/products → List all products
 
-## API Endpoints
+POST /api/products → Add a new product
 
-### Authentication
+PUT /api/products/:id → Update a product
 
-- `POST /login`
-- `POST /register`
-- `GET /logout`
+DELETE /api/products/:id → Delete a product
 
-### Products
+👥 Contacts (Customers & Vendors)
 
-- `GET /products`
-- `POST /products`
-- `PUT /products/:id`
-- `DELETE /products/:id`
+GET /api/contacts → List all contacts
 
-### Customers/Vendors
+POST /api/contacts → Add a contact
 
-- `GET /contacts`
-- `POST /contacts`
-- `PUT /contacts/:id`
-- `DELETE /contacts/:id`
+PUT /api/contacts/:id → Update a contact
 
-### Transactions
+DELETE /api/contacts/:id → Delete a contact
 
-- `GET /transactions`
-- `POST /transactions`
+💰 Transactions
 
-### Reports
+GET /api/transactions → List all transactions
 
-- `GET /reports/inventory`
-- `GET /reports/transactions`
+POST /api/transactions → Record a transaction
 
-## Data Schemas
+📊 Reports
 
-### Product Schema
+GET /api/reports/inventory → Current inventory with stock levels
 
-{
-name: String,
-description: String,
-price: Number,
-stock: Number,
-category: String,
-businessId: String
-}
+GET /api/reports/transactions → Transaction history with filters
 
-### Customer/Vendor Schema
+⚙️ Installation & Setup
 
-{
-name: String,
-phone: String,
-email: String,
-address: String,
-type: 'customer' or 'vendor',
-businessId: String
-}
+# Clone the repository
 
-### Transaction Schema
+git clone https://github.com/bislesh20/Inventory-Billing-Management-System.git
 
-{
-type: 'sale' or 'purchase',
-customerId: String, // for sales
-vendorId: String, // for purchases
-products: [{
-productId: String,
-quantity: Number,
-price: Number
-}],
-totalAmount: Number,
-date: Date,
-businessId: String
-}
+# Navigate to the project
 
-## Installation
+cd Inventory-Billing-Management-System
 
-1. Clone the repository
-2. Install dependencies: `npm install`
-3. Set up MongoDB connection
-4. Configure environment variables
-5. Run the application: `npm start`
+# Install dependencies
 
-.
+npm install
+
+# Configure environment variables in .env file
+
+PORT=5000
+MONGO_URI=your_mongodb_connection_string
+JWT_SECRET=your_jwt_secret
+
+# Run the application
+
+npm start
