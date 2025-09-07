@@ -21,9 +21,13 @@ Backend: Node.js, Express.js
 
 Database: MongoDB + Mongoose
 
-Authentication: JWT + bcrypt
+Authentication & Security: JWT + bcrypt
 
-Others: dotenv, express-validator
+Environment Management: dotenv, config
+
+Middleware & Utilities: cookie-parser, path
+
+Development Tools: nodemon
 
 📂 Project Structure
 src/
@@ -38,43 +42,45 @@ src/
 📑 API Endpoints
 🔑 Authentication
 
-POST /api/auth/register → Register a new user
+POST /auth/register → Register a new user
 
-POST /api/auth/login → Login user
+POST /auth/login → Login user
 
-GET /api/auth/logout → Logout
+GET /auth/logout → Logout
 
 📦 Products
 
-GET /api/products → List all products
+GET /products → List all products
 
-POST /api/products → Add a new product
+POST /products → Add a new product
 
-PUT /api/products/:id → Update a product
+PUT /products/:id → Update a product
 
-DELETE /api/products/:id → Delete a product
+PATCH /products/:id/stock → Update the stock (increase/decrease)
+
+DELETE /products/:id → Delete a product
 
 👥 Contacts (Customers & Vendors)
 
-GET /api/contacts → List all contacts
+GET /contacts → List all contacts
 
-POST /api/contacts → Add a contact
+POST /contacts → Add a contact
 
-PUT /api/contacts/:id → Update a contact
+PUT /contacts/:id → Update a contact
 
-DELETE /api/contacts/:id → Delete a contact
+DELETE /contacts/:id → Delete a contact
 
 💰 Transactions
 
-GET /api/transactions → List all transactions
+GET /transactions → List all transactions
 
-POST /api/transactions → Record a transaction
+POST /transactions → Record a transaction
 
 📊 Reports
 
-GET /api/reports/inventory → Current inventory with stock levels
+GET /reports/inventory → Current inventory with stock levels
 
-GET /api/reports/transactions → Transaction history with filters
+GET /reports/transactions → Transaction history with filters
 
 ⚙️ Installation & Setup
 
@@ -92,9 +98,9 @@ npm install
 
 # Configure environment variables in .env file
 
-PORT=5000
-MONGO_URI=your_mongodb_connection_string
-JWT_SECRET=your_jwt_secret
+PORT=3000
+MONGO_URI = mongodb://localhost:27017/inventory_billing
+JWT_SECRET= sjdhf83hfj3jfsdf9sd8f7sd9fsd8f7sd9f8sd7f8sd7f
 
 # Run the application
 
