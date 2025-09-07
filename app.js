@@ -40,6 +40,9 @@ app.get("/", (req, res) => {
     version: "1.0.0",
   });
 });
+app.get("/health", (req, res) => {
+  res.status(200).send("ok");
+});
 app.use("/auth", authRoutes);
 app.use("/products", isAuthenticated, productRoutes);
 app.use("/contacts", isAuthenticated, contactRoutes);
@@ -52,10 +55,6 @@ app.use(notFoundHandler);
 
 // Server Startup
 const PORT = process.env.PORT || 3000;
-
-app.get("/health", (req, res) => {
-  res.status(200).send("ok");
-});
 
 connectDB().then(() => {
   app.listen(process.env.PORT || 3000, () => {
