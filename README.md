@@ -103,7 +103,7 @@ npm install
 # Configure environment variables in .env file
 
 PORT=3000
-MONGO_URI = mongodb://localhost:27017/inventory_billing
+MONGODB_URI = mongodb://localhost:27017/inventory_billing
 JWT_SECRET= sjdhf83hfj3jfsdf9sd8f7sd9fsd8f7sd9f8sd7f8sd7f
 
 # Run the application
